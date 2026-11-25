@@ -5,6 +5,14 @@ Les trois dépôts ([rust](https://github.com/XERELE-MDK/ledger-mru-rust), [flut
 
 > Le suivi git commence à la **1.1.3**. Les versions antérieures sont décrites ici pour mémoire : leur code n'a pas été conservé, elles n'ont donc ni étiquette ni fichiers publiés.
 
+## [1.2.0] — 2026-11-25
+
+### Ajouté
+- **Soldes de départ** : ce qu'on a et ce qu'on doit au début, en une écriture équilibrée ([doc](docs/soldes-de-depart/FUNCTIONALITY.md)).
+- Documentation par fonctionnalité, compilations automatiques, licence GPL-3.0.
+### Corrigé
+- Espaces insécables manquantes dans plusieurs messages en français.
+
 ## [1.1.3] — 2026-11-25
 
 ### Ajouté
@@ -35,4 +43,5 @@ Les trois dépôts ([rust](https://github.com/XERELE-MDK/ledger-mru-rust), [flut
 ### Corrigé
 - Saisie « 1,250 », montants infinis ou négatifs, fausses dates à l'import.
 
+[1.2.0]: https://github.com/XERELE-MDK/ledger-mru-flutter/releases/tag/v1.2.0
 [1.1.3]: https://github.com/XERELE-MDK/ledger-mru-flutter/releases/tag/v1.1.3
