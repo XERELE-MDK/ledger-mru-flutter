@@ -1,0 +1,31 @@
+name: Release
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: write
+jobs:
+  packages:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: System libraries
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends clang cmake ninja-build pkg-config libgtk-3-dev rpm
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.4'
+          channel: stable
+          cache: true
+      - name: Version and notes
+        run: tools/release_notes.sh "$GITHUB_REF_NAME" > notes.md
+      - run: flutter pub get --enforce-lockfile
+      - run: flutter test
+      - name: Packages (.deb, .rpm, .tar.gz)
+        run: packaging/build_packages.sh
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1 || gh release create "$GITHUB_REF_NAME" --title "Ledger MRU ${GITHUB_REF_NAME#v} (Flutter, Linux)" --notes-file notes.md --verify-tag
+          gh release upload "$GITHUB_REF_NAME" dist/* --clobber
