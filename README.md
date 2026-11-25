@@ -13,6 +13,21 @@ Ce dépôt contient le **code Dart** (écrans, logique, tests) et la **version L
 
 Les trois lisent et écrivent **le même fichier JSON** et se synchronisent par un dossier partagé, sans serveur.
 
+<p>
+  <img src="docs/images/apercu.png" width="180" alt="Aperçu">
+  <img src="docs/images/editorial.png" width="180" alt="Éditorial">
+  <img src="docs/images/galets.png" width="180" alt="Galets">
+  <img src="docs/images/soldes-de-depart.png" width="180" alt="Soldes de départ">
+</p>
+
+## Fonctionnalités
+
+Chaque fonctionnalité a son dossier dans [**docs/**](docs/README.md) : ce qu'elle fait, et comment elle est codée.
+
+[Saisie](docs/saisie/FUNCTIONALITY.md) · [Journal](docs/journal/FUNCTIONALITY.md) · [Grand livre](docs/grand-livre/FUNCTIONALITY.md) · [Rapports](docs/rapports/FUNCTIONALITY.md) · [Comptes et budgets](docs/comptes-et-budgets/FUNCTIONALITY.md) · [Soldes de départ](docs/soldes-de-depart/FUNCTIONALITY.md) · [Livre vide](docs/livre-vide-et-demo/FUNCTIONALITY.md) · [Accueils](docs/accueils/FUNCTIONALITY.md) · [Thèmes](docs/themes/FUNCTIONALITY.md) · [Langues](docs/langues/FUNCTIONALITY.md) · [Import / export](docs/import-export/FUNCTIONALITY.md) · [Synchronisation](docs/synchronisation/FUNCTIONALITY.md) · [Protection des données](docs/protection-des-donnees/FUNCTIONALITY.md) · [Paquets Linux](docs/paquets-linux/FUNCTIONALITY.md)
+
+Versions : [journal](CHANGELOG.md) · [comment elles sont gérées](docs/VERSIONING.md).
+
 ## Démarrer
 
 Flutter **3.44.4** (stable).
