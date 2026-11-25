@@ -10,12 +10,6 @@
       "deviceId": "linux"
     },
     {
-      "name": "Ledger — téléphone Android (USB / Wi-Fi)",
-      "request": "launch",
-      "type": "dart",
-      "program": "lib/main.dart"
-    },
-    {
       "name": "Ledger — Linux (profile, pour mesurer)",
       "request": "launch",
       "type": "dart",
