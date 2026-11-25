@@ -92,6 +92,9 @@ String newEntryId() =>
 /// Is this one of the demo entries ("s20261125-12", see [seedData])?
 bool isDemoEntry(String id) => RegExp(r'^s\d{8}-\d+$').hasMatch(id);
 
+/// Was this entry made by [AppState.setOpening] ("o1795…-3fa2")?
+bool isOpeningEntry(String id) => RegExp(r'^o\d{12,}-').hasMatch(id);
+
 bool sameEntry(Entry a, Entry b) {
   if (a.id != b.id || a.date != b.date || a.memo != b.memo) return false;
   if (a.lines.length != b.lines.length) return false;
@@ -502,6 +505,94 @@ class AppState extends ChangeNotifier {
     if (ids.isEmpty) return;
     entries = entries.where((e) => !ids.contains(e.id)).toList();
     _changed();
+  }
+
+  /// What each thing the user has, or owes, was at the start: assets and
+  /// liabilities, with the total already recorded by [setOpening].
+  List<({Account account, double amount})> get openingRows => [
+    for (final a in sortedAccounts)
+      if (a.type == 'asset' || a.type == 'liability')
+        (
+          account: a,
+          amount: normalBal(
+            a,
+            entries
+                .where((e) => isOpeningEntry(e.id))
+                .expand((e) => e.lines)
+                .where((l) => l.a == a.id)
+                .fold(0.0, (t, l) => t + l.dr - l.cr),
+          ),
+        ),
+  ];
+
+  /// Date of the recorded opening balances, if any.
+  String? get openingDate {
+    final dates = [
+      for (final e in entries)
+        if (isOpeningEntry(e.id)) e.date,
+    ]..sort();
+    return dates.firstOrNull;
+  }
+
+  /// Records the opening balances as one balanced entry: what you have is
+  /// debited, what you owe is credited, the difference goes to equity.
+  /// Replaces the previous ones; all zeros removes them. Same rules as
+  /// `Book::set_opening` (Rust). Returns an error to show, or null.
+  String? setOpening(String date, Map<String, String> typed) {
+    final lines = <Line>[];
+    for (final MapEntry(key: id, value: text) in typed.entries) {
+      final a = byId[id];
+      if (a == null || (a.type != 'asset' && a.type != 'liability')) continue;
+      final v = parseAmount(text);
+      if (v == 0 && text.replaceAll(RegExp(r'[\s0.,\u00a0\u202f]'), '') != '') {
+        return S.current.errOpening(a.name, text.trim());
+      }
+      if (v > 0) lines.add(a.type == 'asset' ? Line(id, v, 0) : Line(id, 0, v));
+    }
+    final old = {
+      for (final e in entries)
+        if (isOpeningEntry(e.id)) e.id,
+    };
+    if (lines.isEmpty && old.isEmpty) return S.current.errOpeningEmpty;
+    final diff =
+        (lines.fold(0.0, (t, l) => t + l.dr - l.cr) * 100).round() / 100;
+    if (diff != 0) {
+      final eq = _openingAccount();
+      lines.add(diff > 0 ? Line(eq, 0, diff) : Line(eq, -diff, 0));
+    }
+    final at = nowMs();
+    entries = entries.where((e) => !old.contains(e.id)).toList();
+    deletedEntries = [
+      ...deletedEntries,
+      for (final id in old) Tombstone(id, at),
+    ];
+    if (lines.isNotEmpty) {
+      entries = [
+        ...entries,
+        Entry(
+          id: 'o${newEntryId().substring(1)}',
+          date: date,
+          memo: S.current.openingBalances,
+          lines: lines,
+        ),
+      ];
+      month = date.substring(0, 7);
+    }
+    _changed();
+    return null;
+  }
+
+  /// The equity account that balances the opening; created when missing.
+  String _openingAccount() {
+    final equity = accounts.where((a) => a.type == 'equity');
+    final a =
+        equity.where((a) => a.id == 'opening').firstOrNull ??
+        equity.firstOrNull;
+    if (a != null) return a.id;
+    final name = S.current.demoAccount('opening');
+    final id = newAccountId(name);
+    upsertAccount(Account(id: id, name: name, type: 'equity'));
+    return id;
   }
 
   int get demoCount => entries.where((e) => isDemoEntry(e.id)).length;

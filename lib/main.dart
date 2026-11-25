@@ -221,7 +221,11 @@ class Shell extends StatelessWidget {
                     !s.demoSeen &&
                     // It would reach the other devices: only from Settings.
                     !SyncScope.of(context).on)
-                  const _DemoCard(),
+                  const _DemoCard()
+                else if (tab == AppTab.home &&
+                    !s.settingsOpen &&
+                    s.entries.isEmpty)
+                  const _EmptyCard(),
                 Expanded(
                   child: GestureDetector(
                     // Swipe left/right to change month on the month-based tabs.
@@ -340,6 +344,37 @@ class _DemoCard extends StatelessWidget {
                 child: Text(S.current.startEmpty(true)),
               ),
             ],
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+/// Empty book: the first thing to write down.
+class _EmptyCard extends StatelessWidget {
+  const _EmptyCard();
+
+  @override
+  Widget build(BuildContext context) => Padding(
+    padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+    child: Panel(
+      color: C.g100,
+      radius: 24,
+      padding: const EdgeInsets.fromLTRB(16, 12, 8, 4),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            S.current.emptyCard,
+            style: body(13, color: C.g900, height: 1.4),
+          ),
+          Align(
+            alignment: Alignment.centerRight,
+            child: TextButton(
+              onPressed: () => showOpeningSheet(context),
+              child: Text(S.current.openingBalances),
+            ),
           ),
         ],
       ),

@@ -519,10 +519,36 @@ class S {
     'La synchro est active : cela vaut pour tous vos appareils, sans annulation.',
     '同期がオンです。すべての端末に反映され、元に戻せません。',
   );
-  String openingHint(String cash, String opening) => _t(
-    'Then note what you already have: Accountant mode, debit “$cash”, credit “$opening”.',
-    'Notez ensuite ce que vous avez déjà : mode Comptable, débit « $cash », crédit « $opening ».',
-    '次に手持ちの額を記帳します：会計モードで、借方「$cash」、貸方「$opening」。',
+  String get openingBalances =>
+      _t('Opening balances', 'Soldes de départ', '開始残高');
+  String get openingText => _t(
+    'What you have, and what you owe, on that day. This is not income: the difference goes to equity.',
+    'Ce que vous avez, et ce que vous devez, ce jour-là. Ce n’est pas un revenu : la différence va dans les capitaux propres.',
+    'その日の手持ちと借入の額です。収入ではありません。差額は純資産に入ります。',
+  );
+  String get openingThen => _t(
+    'Then enter what you have today: “$openingBalances”, in Accounts.',
+    'Indiquez ensuite ce que vous avez aujourd’hui : « $openingBalances », dans Comptes.',
+    '次に、勘定の「$openingBalances」で今日の手持ちを入力してください。',
+  );
+  String get emptyCard => _t(
+    'Your book is empty. Start with what you have today.',
+    'Votre livre est vide. Commencez par ce que vous avez aujourd’hui.',
+    '帳簿は空です。今日の手持ちから始めましょう。',
+  );
+  String get openingSaved =>
+      _t('Balances saved', 'Soldes enregistrés', '残高を保存しました');
+  String get openingRemoved =>
+      _t('Balances removed', 'Soldes retirés', '残高を取り除きました');
+  String errOpening(String name, String text) => _t(
+    '“$name”: “$text” is not an amount.',
+    '« $name » : « $text » n’est pas un montant.',
+    '「$name」：「$text」は金額ではありません。',
+  );
+  String get errOpeningEmpty => _t(
+    'Enter at least one amount.',
+    'Entrez au moins un montant.',
+    '金額を1つ以上入力してください。',
   );
   String get remove => _t('Remove', 'Retirer', '取り除く');
   String get later => _t('Later', 'Plus tard', 'あとで');
