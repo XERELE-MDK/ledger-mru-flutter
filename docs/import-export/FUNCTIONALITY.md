@@ -1,16 +1,16 @@
-# Import et export — fonctionnement
+# Import and export — how it works
 
-[← Toutes les fonctionnalités](../README.md) · [Parcours du code](CODE_WALKTHROUGH.md)
+[← All features](../README.md) · [Code walkthrough](CODE_WALKTHROUGH.md)
 
-**Exporter** enregistre tout le livre dans un fichier JSON lisible par les trois versions.
+**Export** saves the whole book to a JSON file that all three versions can read.
 
-**Importer** vérifie le fichier **en entier** avant de toucher à quoi que ce soit, puis propose :
+**Import** checks the **whole** file before touching anything, then offers:
 
-| Choix | Effet |
+| Choice | Effect |
 |---|---|
-| **Fusionner** | garde les deux côtés, suppressions comprises. L'aperçu dit ce qui changera. |
-| **Remplacer** | prend le fichier tel quel. Refusé pendant la synchro. |
+| **Merge** | keeps both sides, deletions included. The preview says what will change. |
+| **Replace** | takes the file as it is. Refused while sync is on. |
 
-**Annuler** est proposé ensuite.
+**Undo** is offered afterwards.
 
-Limite connue : annuler un import **fusionné** ne tient pas si la synchro est active.
+Known limit: undoing a **merged** import does not hold while sync is on.

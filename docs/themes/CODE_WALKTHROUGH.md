@@ -1,14 +1,17 @@
-# Thèmes — parcours du code
+# Themes — code walkthrough
 
-[← Toutes les fonctionnalités](../README.md) · [Fonctionnement](FUNCTIONALITY.md)
+[← All features](../README.md) · [How it works](FUNCTIONALITY.md)
 
 `lib/theme.dart`
 
-- `AppTheme` : couleurs, rampes 100–900, polices.
-- `AppTheme.generate()` fabrique tout un thème à partir de **5 couleurs**.
-- `C` : façade lue par tous les écrans (`C.bg`, `C.a700`). Aucune couleur en dur ailleurs.
-- Règle : 100–300 = fonds teintés, 700–900 = texte posé dessus, dans tous les thèmes.
+- `AppTheme`: colours, 100–900 ramps, fonts.
+- `AppTheme.generate()` builds a whole theme from **5 colours** (background, surface, text, accent, second accent).
+- `C`: the facade every screen reads (`C.bg`, `C.a700`). No hard-coded colour anywhere else.
+- Rule: 100–300 = tinted backgrounds, 700–900 = text drawn on them, in every theme.
+- Display fonts often lack "−" (U+2212) or Japanese: the body font, then the system fonts (Noto CJK…), fill the gaps.
 
-Changer de thème change la `key` de `MaterialApp` : tout l'arbre est reconstruit et relit `C`.
+Switching theme changes the `key` of `MaterialApp`: the whole tree is rebuilt and reads `C` again.
 
-Tests : contrastes WCAG de chaque thème, présence de chaque police.
+Adding a theme: one `AppTheme.generate(...)` in `themes`, its name in `S.themeName`, its fonts in `assets/fonts/` and `pubspec.yaml`.
+
+Tests: WCAG contrast of every theme, presence of every font.

@@ -1,11 +1,11 @@
-# Journal — parcours du code
+# Journal — code walkthrough
 
-[← Toutes les fonctionnalités](../README.md) · [Fonctionnement](FUNCTIONALITY.md)
+[← All features](../README.md) · [How it works](FUNCTIONALITY.md)
 
 `lib/screens/journal.dart`
 
-- `JournalScreen` lit `s.entriesIn(s.month)` et regroupe par date en parcourant la liste à l'envers.
-- `entryLines()` dessine les lignes Dr / Cr ; elle sert aussi au détail d'une écriture.
-- `describe()` (`lib/model.dart`) dit si une écriture est une dépense, un revenu ou un virement : la présence d'un compte de dépense l'emporte sur celle d'un revenu.
+- `JournalScreen` reads `s.entriesIn(s.month)` and groups by date while walking the list backwards.
+- `entryLines()` draws the Dr / Cr lines; the entry detail uses it too.
+- `describe()` (`lib/model.dart`) tells whether an entry is an expense, an income or a transfer: an expense account wins over an income account.
 
-Rien n'est stocké : tout est recalculé à chaque affichage.
+Nothing is stored: everything is recomputed on every frame that needs it.

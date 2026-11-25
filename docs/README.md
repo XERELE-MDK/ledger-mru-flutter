@@ -1,25 +1,25 @@
 # Documentation
 
-Une fonctionnalité = un dossier :
-- `FUNCTIONALITY.md` — ce que ça fait, pour qui l'utilise ;
-- `CODE_WALKTHROUGH.md` — comment c'est codé ;
-- `INSTALL.md` — s'il y a quelque chose à mettre en place.
+One feature = one folder:
+- `FUNCTIONALITY.md` — what it does, for the person using it;
+- `CODE_WALKTHROUGH.md` — how it is built;
+- `INSTALL.md` — when there is something to set up.
 
-| Fonctionnalité | En bref | Aller plus loin |
+| Feature | In short | Go further |
 |---|---|---|
-| [Saisir une écriture](saisie/FUNCTIONALITY.md) | Dépense, revenu, virement ; mode Simple ou Comptable | [code](saisie/CODE_WALKTHROUGH.md) |
-| [Journal](journal/FUNCTIONALITY.md) | Les écritures du mois, groupées par jour | [code](journal/CODE_WALKTHROUGH.md) |
-| [Grand livre](grand-livre/FUNCTIONALITY.md) | Le détail d'un compte, avec son solde courant | [code](grand-livre/CODE_WALKTHROUGH.md) |
-| [Rapports](rapports/FUNCTIONALITY.md) | Balance, comparaison sur 6 mois, budgets | [code](rapports/CODE_WALKTHROUGH.md) |
-| [Comptes et budgets](comptes-et-budgets/FUNCTIONALITY.md) | Créer, modifier, supprimer ; budget mensuel | [code](comptes-et-budgets/CODE_WALKTHROUGH.md) |
-| [Soldes de départ](soldes-de-depart/FUNCTIONALITY.md) | Ce qu'on a et ce qu'on doit au début | [code](soldes-de-depart/CODE_WALKTHROUGH.md) |
-| [Livre vide et démo](livre-vide-et-demo/FUNCTIONALITY.md) | Essayer avec des exemples, puis commencer pour de vrai | [code](livre-vide-et-demo/CODE_WALKTHROUGH.md) |
-| [Écrans d'accueil](accueils/FUNCTIONALITY.md) | Quatre façons de voir le mois | [code](accueils/CODE_WALKTHROUGH.md) |
-| [Thèmes](themes/FUNCTIONALITY.md) | Six thèmes complets : couleurs et polices | [code](themes/CODE_WALKTHROUGH.md) |
-| [Langues](langues/FUNCTIONALITY.md) | Français, anglais, japonais | [code](langues/CODE_WALKTHROUGH.md) |
-| [Import et export](import-export/FUNCTIONALITY.md) | Un fichier JSON, fusionné ou remplacé | [code](import-export/CODE_WALKTHROUGH.md) |
-| [Synchronisation](synchronisation/FUNCTIONALITY.md) | Entre appareils, par un dossier partagé, sans serveur | [code](synchronisation/CODE_WALKTHROUGH.md) · [mise en place](synchronisation/INSTALL.md) |
-| [Protection des données](protection-des-donnees/FUNCTIONALITY.md) | Ne jamais perdre ni écraser un livre | [code](protection-des-donnees/CODE_WALKTHROUGH.md) |
-| [Paquets Linux](paquets-linux/FUNCTIONALITY.md) | Arch, Debian, RPM, archive sans root | [code](paquets-linux/CODE_WALKTHROUGH.md) · [mise en place](paquets-linux/INSTALL.md) |
+| [Adding an entry](entry/FUNCTIONALITY.md) | Expense, income, transfer; Simple or Accountant mode | [code](entry/CODE_WALKTHROUGH.md) |
+| [Journal](journal/FUNCTIONALITY.md) | The month's entries, grouped by day | [code](journal/CODE_WALKTHROUGH.md) |
+| [Ledger](ledger/FUNCTIONALITY.md) | One account in detail, with its running balance | [code](ledger/CODE_WALKTHROUGH.md) |
+| [Reports](reports/FUNCTIONALITY.md) | Trial balance, 6-month comparison, budgets | [code](reports/CODE_WALKTHROUGH.md) |
+| [Accounts and budgets](accounts-and-budgets/FUNCTIONALITY.md) | Create, edit, delete; monthly budget | [code](accounts-and-budgets/CODE_WALKTHROUGH.md) |
+| [Opening balances](opening-balances/FUNCTIONALITY.md) | What you own and owe on day one | [code](opening-balances/CODE_WALKTHROUGH.md) |
+| [Empty book and demo](empty-book-and-demo/FUNCTIONALITY.md) | Try it with examples, then start for real | [code](empty-book-and-demo/CODE_WALKTHROUGH.md) |
+| [Home screens](home-screens/FUNCTIONALITY.md) | Four ways to look at the month | [code](home-screens/CODE_WALKTHROUGH.md) |
+| [Themes](themes/FUNCTIONALITY.md) | Six complete themes: colours and fonts | [code](themes/CODE_WALKTHROUGH.md) |
+| [Languages](languages/FUNCTIONALITY.md) | English, French, Japanese | [code](languages/CODE_WALKTHROUGH.md) |
+| [Import and export](import-export/FUNCTIONALITY.md) | One JSON file, merged or replaced | [code](import-export/CODE_WALKTHROUGH.md) |
+| [Sync](sync/FUNCTIONALITY.md) | Across devices, through a shared folder, no server | [code](sync/CODE_WALKTHROUGH.md) · [setup](sync/INSTALL.md) |
+| [Data safety](data-safety/FUNCTIONALITY.md) | Never lose or overwrite a book | [code](data-safety/CODE_WALKTHROUGH.md) |
+| [Linux packages](linux-packages/FUNCTIONALITY.md) | Arch, Debian, RPM, rootless archive | [code](linux-packages/CODE_WALKTHROUGH.md) · [setup](linux-packages/INSTALL.md) |
 
-Voir aussi : [Gestion des versions](VERSIONING.md) · [Journal des versions](../CHANGELOG.md)
+See also: [Versioning](VERSIONING.md) · [Changelog](../CHANGELOG.md)

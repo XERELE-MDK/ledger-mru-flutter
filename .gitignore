@@ -39,12 +39,17 @@ app.*.symbols
 # Obfuscation related
 app.*.map.json
 
-# Android Studio will place build artifacts here
-/android/app/debug
-/android/app/profile
-/android/app/release
 
 # Machine-specific
 /linux/flutter/ephemeral/
 /dist/
 *.local.*
+
+# Signing material is never published
+key.properties
+*.jks
+*.keystore
+.env*
+
+# French docs: local only, they live in the Obsidian vault (symlink)
+/docs-fr

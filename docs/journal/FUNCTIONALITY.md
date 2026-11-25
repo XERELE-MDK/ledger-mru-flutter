@@ -1,12 +1,12 @@
-# Journal — fonctionnement
+# Journal — how it works
 
-[← Toutes les fonctionnalités](../README.md) · [Parcours du code](CODE_WALKTHROUGH.md)
+[← All features](../README.md) · [Code walkthrough](CODE_WALKTHROUGH.md)
 
-## Ce que ça fait
+## What it does
 
-Les écritures du mois affiché, de la plus récente à la plus ancienne, groupées par jour. Toucher une écriture ouvre son détail.
+The entries of the month on screen, newest first, grouped by day. Tap an entry to open its detail.
 
-- **Mode Simple** : une ligne par écriture, avec un signe et une couleur (dépense, revenu, virement).
-- **Mode Comptable** : les lignes Débit puis « à Crédit », et un bandeau **Équilibré** si Σ débits = Σ crédits.
+- **Simple mode**: one line per entry, with a sign and a colour (expense, income, transfer).
+- **Accountant mode**: the Debit lines, then the "to Credit" lines, and a **Balanced** banner when Σ debits = Σ credits.
 
-Changer de mois : flèches, balayage horizontal, ou toucher le nom du mois pour revenir au mois en cours.
+Change month with the arrows, a horizontal swipe, or tap the month name to jump back to the current month.

@@ -1,47 +1,52 @@
-# Journal des versions
+# Changelog
 
-Format : [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/) · numéros : [SemVer](https://semver.org/lang/fr/).
-Les trois dépôts ([rust](https://github.com/XERELE-MDK/ledger-mru-rust), [flutter](https://github.com/XERELE-MDK/ledger-mru-flutter), [mobile](https://github.com/XERELE-MDK/ledger-mru-mobile)) avancent avec **le même numéro**.
+Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) · numbers: [SemVer](https://semver.org/).
+The three repositories ([rust](https://github.com/XERELE-MDK/ledger-mru-rust), [flutter](https://github.com/XERELE-MDK/ledger-mru-flutter), [mobile](https://github.com/XERELE-MDK/ledger-mru-mobile)) move forward with **the same number**.
 
-> Le suivi git commence à la **1.1.3**. Les versions antérieures sont décrites ici pour mémoire : leur code n'a pas été conservé, elles n'ont donc ni étiquette ni fichiers publiés.
+> Git history starts at **1.1.3**. Earlier versions are listed for the record: their code was not kept, so they have no tag and no downloads.
+
+## [Unreleased]
+
+### Changed
+- Documentation and READMEs are now in English.
 
 ## [1.2.0] — 2026-11-25
 
-### Ajouté
-- **Soldes de départ** : ce qu'on a et ce qu'on doit au début, en une écriture équilibrée ([doc](docs/soldes-de-depart/FUNCTIONALITY.md)).
-- Documentation par fonctionnalité, compilations automatiques, licence GPL-3.0.
-### Corrigé
-- Espaces insécables manquantes dans plusieurs messages en français.
+### Added
+- **Opening balances**: what you own and owe on day one, as one balanced entry ([doc](docs/opening-balances/FUNCTIONALITY.md)).
+- Per-feature documentation, automated builds, GPL-3.0 licence.
+### Fixed
+- Missing no-break spaces in several French messages.
 
 ## [1.1.3] — 2026-11-25
 
-### Ajouté
-- « Commencer avec un livre vide » : retire la démo, et rien d'autre.
-### Corrigé
-- Au premier lancement, la démo était toujours créée en anglais.
-- Deux démos dans deux langues n'entrent plus en conflit.
+### Added
+- "Start with an empty book": removes the demo, and nothing else.
+### Fixed
+- On first launch the demo was always created in English.
+- Two demos in two languages no longer conflict.
 
 ## 1.1.2 — 2026-11-25
 
-### Corrigé
-- Synchro en boucle : un fichier identique n'est plus réécrit.
-- Une saisie faite pendant une synchro pouvait être perdue ou oubliée.
-- Annuler une suppression déjà synchronisée ne tenait pas.
-- « Revenir à la démo » et « Remplacer » sont refusés pendant la synchro.
-- Un bandeau « Annuler » ne se fermait plus tout seul.
+### Fixed
+- Sync loop: an identical file is no longer rewritten.
+- An entry typed during a sync could be lost or ignored.
+- Undoing a deletion that was already synced did not hold.
+- "Reset to demo data" and "Replace" are refused while sync is on.
+- An "Undo" banner no longer closed on its own.
 
 ## 1.1.1 — 2026-11-25
 
-### Corrigé
-- Des données locales illisibles empêchaient l'app de s'ouvrir, ou étaient écrasées.
+### Fixed
+- Unreadable local data stopped the app from opening, or got overwritten.
 
 ## 1.1.0 — 2026-11-24
 
-### Ajouté
-- 6 thèmes complets, 3 langues (français, anglais, japonais), écran Paramètres.
-- Accueils Éditorial, Compte en T et Galets. Nouvelle icône.
-### Corrigé
-- Saisie « 1,250 », montants infinis ou négatifs, fausses dates à l'import.
+### Added
+- 6 complete themes, 3 languages (English, French, Japanese), Settings screen.
+- Editorial, T-account and Pebbles home screens. New icon.
+### Fixed
+- Typing "1,250", infinite or negative amounts, fake dates on import.
 
 [1.2.0]: https://github.com/XERELE-MDK/ledger-mru-flutter/releases/tag/v1.2.0
 [1.1.3]: https://github.com/XERELE-MDK/ledger-mru-flutter/releases/tag/v1.1.3
