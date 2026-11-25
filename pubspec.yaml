@@ -1,0 +1,103 @@
+name: ledger_mru
+description: "Personal ledger in MRU"
+publish_to: 'none'
+version: 1.1.3+5
+
+environment:
+  sdk: ^3.12.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations: # Material widgets in fr / ja (date picker, dialogs)
+    sdk: flutter
+  shared_preferences: ^2.5.6
+  # Pinned: 2.5.x pulls in `jni` (native C code), which forces a ~700 MB NDK
+  # download + CMake. 2.4.28 is the last pure-Kotlin implementation.
+  shared_preferences_android: 2.4.28
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  # Theme fonts (static TTFs from Google Fonts, OFL) — see lib/theme.dart.
+  fonts:
+    - family: Caprasimo
+      fonts:
+        - asset: assets/fonts/Caprasimo-Regular.ttf
+    - family: Figtree
+      fonts:
+        - asset: assets/fonts/Figtree-400.ttf
+        - asset: assets/fonts/Figtree-600.ttf
+          weight: 600
+        - asset: assets/fonts/Figtree-700.ttf
+          weight: 700
+        - asset: assets/fonts/Figtree-800.ttf
+          weight: 800
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/Nunito-400.ttf
+        - asset: assets/fonts/Nunito-600.ttf
+          weight: 600
+        - asset: assets/fonts/Nunito-700.ttf
+          weight: 700
+        - asset: assets/fonts/Nunito-800.ttf
+          weight: 800
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-400.ttf
+        - asset: assets/fonts/Inter-600.ttf
+          weight: 600
+        - asset: assets/fonts/Inter-700.ttf
+          weight: 700
+        - asset: assets/fonts/Inter-800.ttf
+          weight: 800
+    - family: Lexend
+      fonts:
+        - asset: assets/fonts/Lexend-400.ttf
+        - asset: assets/fonts/Lexend-600.ttf
+          weight: 600
+        - asset: assets/fonts/Lexend-700.ttf
+          weight: 700
+        - asset: assets/fonts/Lexend-800.ttf
+          weight: 800
+    - family: Karla
+      fonts:
+        - asset: assets/fonts/Karla-400.ttf
+        - asset: assets/fonts/Karla-600.ttf
+          weight: 600
+        - asset: assets/fonts/Karla-700.ttf
+          weight: 700
+        - asset: assets/fonts/Karla-800.ttf
+          weight: 800
+    - family: Mulish
+      fonts:
+        - asset: assets/fonts/Mulish-400.ttf
+        - asset: assets/fonts/Mulish-600.ttf
+          weight: 600
+        - asset: assets/fonts/Mulish-700.ttf
+          weight: 700
+        - asset: assets/fonts/Mulish-800.ttf
+          weight: 800
+    - family: DMSerifDisplay
+      fonts:
+        - asset: assets/fonts/DMSerifDisplay-400.ttf
+    - family: SpaceGrotesk
+      fonts:
+        - asset: assets/fonts/SpaceGrotesk-700.ttf
+          weight: 700
+    - family: Comfortaa
+      fonts:
+        - asset: assets/fonts/Comfortaa-700.ttf
+          weight: 700
+    - family: PlayfairDisplay
+      fonts:
+        - asset: assets/fonts/PlayfairDisplay-700.ttf
+          weight: 700
+    - family: Quicksand
+      fonts:
+        - asset: assets/fonts/Quicksand-700.ttf
+          weight: 700

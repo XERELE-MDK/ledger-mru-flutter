@@ -1,0 +1,27 @@
+{
+  // F5 in VS Code: pick one of these in the Run and Debug panel.
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Ledger — Linux (fenêtre téléphone)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "deviceId": "linux"
+    },
+    {
+      "name": "Ledger — téléphone Android (USB / Wi-Fi)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart"
+    },
+    {
+      "name": "Ledger — Linux (profile, pour mesurer)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "deviceId": "linux",
+      "flutterMode": "profile"
+    }
+  ]
+}

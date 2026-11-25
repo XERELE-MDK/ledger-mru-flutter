@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Ledger MRU (Flutter)
+GenericName=Comptabilité personnelle
+Comment=Comptabilité personnelle en ouguiya (partie double) — même app que sur le téléphone
+Exec=ledger-mru-flutter
+Icon=app.mru.ledger_mru
+Terminal=false
+Categories=Office;Finance;
+StartupWMClass=app.mru.ledger_mru
