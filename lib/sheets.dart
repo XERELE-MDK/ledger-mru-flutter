@@ -686,3 +686,197 @@ class _AccountEditorState extends State<_AccountEditor> {
     );
   }
 }
+
+// ───────────────────────── Opening balances ─────────────────────────
+
+Future<void> showOpeningSheet(BuildContext context) =>
+    _sheet(context, const _Opening());
+
+/// What the user has and owes at the start, one amount per account.
+class _Opening extends StatefulWidget {
+  const _Opening();
+  @override
+  State<_Opening> createState() => _OpeningState();
+}
+
+class _OpeningState extends State<_Opening> {
+  final fields = <String, TextEditingController>{};
+  late String date;
+  String err = '';
+
+  @override
+  void initState() {
+    super.initState();
+    final s = AppScope.read(context);
+    date = s.openingDate ?? todayStr();
+    for (final r in s.openingRows) {
+      fields[r.account.id] = TextEditingController(
+        text: r.amount == 0 ? '' : f2(r.amount, false),
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    for (final f in fields.values) {
+      f.dispose();
+    }
+    super.dispose();
+  }
+
+  void save() {
+    final s = AppScope.read(context);
+    final had = s.openingDate != null;
+    final e = s.setOpening(date, {
+      for (final f in fields.entries) f.key: f.value.text,
+    });
+    if (e != null) return setState(() => err = e);
+    toast(
+      context,
+      had && s.openingDate == null
+          ? S.current.openingRemoved
+          : S.current.openingSaved,
+    );
+    Navigator.pop(context);
+  }
+
+  Future<void> pickDate() async {
+    final picked = await showDatePicker(
+      context: context,
+      initialDate: parseDate(date),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
+    if (picked != null) setState(() => date = dateStr(picked));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final s = AppScope.of(context);
+    const gap = SizedBox(height: 14);
+    return SheetBody(
+      footer: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          // Above the buttons: visible even when the list is scrolled.
+          if (err.isNotEmpty) ...[
+            Text(
+              err,
+              style: body(13, weight: FontWeight.w600, color: C.a700),
+            ),
+            const SizedBox(height: 10),
+          ],
+          Row(
+            children: [
+              Expanded(
+                child: OutlinedButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text(S.current.cancel),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                flex: 2,
+                child: FilledButton(
+                  onPressed: save,
+                  child: Text(S.current.save),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+      children: [
+        Text(S.current.openingBalances, style: heading(20)),
+        const SizedBox(height: 6),
+        Hint(S.current.openingText, padding: EdgeInsets.zero),
+        gap,
+        FieldLabel(S.current.date),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: SizedBox(
+            width: 170,
+            child: Material(
+              color: C.surface,
+              shape: StadiumBorder(side: BorderSide(color: C.divider)),
+              clipBehavior: Clip.antiAlias,
+              child: InkWell(
+                onTap: pickDate,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 12,
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          S.current.lang == 'ja'
+                              ? '${date.substring(0, 4)}年${dayShort(date)}'
+                              : '${dayShort(date)} ${date.substring(0, 4)}',
+                          style: body(14),
+                        ),
+                      ),
+                      Icon(
+                        Icons.calendar_today_rounded,
+                        size: 16,
+                        color: C.n700,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+        gap,
+        for (final r in s.openingRows)
+          if (fields[r.account.id] case final field?)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          r.account.name,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: body(14, weight: FontWeight.w600),
+                        ),
+                        Text(
+                          S.current.typeHint(r.account.type),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: body(11.5, color: C.n700),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  SizedBox(
+                    width: 140,
+                    child: TextField(
+                      key: ValueKey('opening-${r.account.id}'),
+                      controller: field,
+                      textAlign: TextAlign.right,
+                      keyboardType: const TextInputType.numberWithOptions(
+                        decimal: true,
+                      ),
+                      inputFormatters: [
+                        FilteringTextInputFormatter.allow(RegExp(r'[0-9.,\s]')),
+                      ],
+                      style: body(15, weight: FontWeight.w700, num: true),
+                      decoration: const InputDecoration(hintText: '0'),
+                      onChanged: (_) => setState(() => err = ''),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+      ],
+    );
+  }
+}

@@ -94,6 +94,11 @@ class AccountsScreen extends StatelessWidget {
           onPressed: () => showAccountSheet(context, null),
           child: Text(S.current.newAccountButton, style: heading(15)),
         ),
+        const SizedBox(height: 10),
+        OutlinedButton(
+          onPressed: () => showOpeningSheet(context),
+          child: Text(S.current.openingBalances, style: heading(15)),
+        ),
       ],
     );
   }

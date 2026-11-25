@@ -26,8 +26,6 @@ Future<void> startEmpty(BuildContext context) async {
   final l = S.current;
   final demo = s.demoCount;
   final own = s.entries.length - demo;
-  final cash = s.accounts.where((a) => a.type == 'asset').firstOrNull;
-  final opening = s.accounts.where((a) => a.type == 'equity').firstOrNull;
   final ok = await showDialog<bool>(
     context: context,
     builder: (c) => AlertDialog(
@@ -37,8 +35,7 @@ Future<void> startEmpty(BuildContext context) async {
           [
             l.startEmptyText(demo, own),
             if (synced) l.startEmptySynced,
-            if (cash != null && opening != null)
-              l.openingHint(cash.name, opening.name),
+            if (own == 0) l.openingThen,
           ].join('\n\n'),
         ),
       ),

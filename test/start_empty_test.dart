@@ -249,20 +249,6 @@ void main() {
         }
       }
     }
-    // Opening balances, as the hint says: Dr cash / Cr opening balance.
-    s.addEntry(
-      const Entry(
-        id: 'o',
-        date: '2026-11-01',
-        memo: 'Opening',
-        lines: [Line('cash', 3000, 0), Line('opening', 0, 3000)],
-      ),
-    );
-    s.setTab(AppTab.home);
-    s.setHomeStyle('overview');
-    await tester.pumpAndSettle();
-    expect(tester.takeException(), isNull);
-    expect(s.rawBal('cash', '9999-12-31'), 3000);
     sync.dispose();
   });
 }
